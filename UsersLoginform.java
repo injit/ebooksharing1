@@ -49,6 +49,7 @@ public class UsersLoginform extends javax.swing.JFrame {
         UserPassTextField = new javax.swing.JPasswordField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setPreferredSize(new java.awt.Dimension(970, 920));
 
         jPanel1.setBackground(new java.awt.Color(51, 153, 0));
         jPanel1.setFont(new java.awt.Font("Lucida Grande", 1, 13)); // NOI18N
@@ -76,38 +77,38 @@ public class UsersLoginform extends javax.swing.JFrame {
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(527, 527, 527)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(PasswordLabel)
-                    .addComponent(UserNameLabel))
-                .addGap(34, 34, 34)
+                .addContainerGap(338, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(PasswordLabel)
+                            .addComponent(UserNameLabel))
+                        .addGap(52, 52, 52))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addComponent(LoginCancel)
+                        .addGap(41, 41, 41)))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(UserPassTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(UserNameTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(UserPassTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(427, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(LoginCancel)
-                .addGap(18, 18, 18)
-                .addComponent(SignInButton)
-                .addGap(464, 464, 464))
+                    .addComponent(SignInButton))
+                .addContainerGap(349, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(178, 178, 178)
+                .addGap(184, 184, 184)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(UserNameTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(UserNameLabel))
-                .addGap(18, 18, 18)
+                .addGap(24, 24, 24)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(UserPassTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(PasswordLabel))
-                .addGap(57, 57, 57)
+                    .addComponent(PasswordLabel)
+                    .addComponent(UserPassTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(54, 54, 54)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(SignInButton)
-                    .addComponent(LoginCancel))
-                .addContainerGap(222, Short.MAX_VALUE))
+                    .addComponent(LoginCancel)
+                    .addComponent(SignInButton))
+                .addContainerGap(207, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -120,9 +121,7 @@ public class UsersLoginform extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
 
         pack();
@@ -169,16 +168,19 @@ public class UsersLoginform extends javax.swing.JFrame {
 
                 if (checkmatch) {
                     if(SuperUserType){
-                        JOptionPane.showMessageDialog(null, "You are logged in as  Super user.");
+                        //JOptionPane.showMessageDialog(null, "You are logged in as  Super user.");
                         cancel();
-                        RegUserPage rup = new RegUserPage(usernametogui);
+                        RegUserPage rup = new RegUserPage("SuperUser", usernametogui);
                         rup.setVisible(true);
                     } 
-                    else{
-                        JOptionPane.showMessageDialog(null, "You are logged in as registered user.");
+                    else if(!SuperUserType){
+                        //JOptionPane.showMessageDialog(null, "You are logged in as registered user.");
                         cancel();
-                        RegUserPage rup = new RegUserPage(usernametogui);
+                        RegUserPage rup = new RegUserPage("User", usernametogui);
                         rup.setVisible(true);
+                    }
+                    else{
+                        cancel();
                     }
                 }
                 else{

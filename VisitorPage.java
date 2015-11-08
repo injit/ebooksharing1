@@ -1,11 +1,8 @@
 package ebooksharing1;
 
-import java.awt.Toolkit;
-import java.awt.event.WindowEvent;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-import javax.swing.JOptionPane;
 import net.proteanit.sql.DbUtils;
 
 /*
@@ -17,23 +14,25 @@ import net.proteanit.sql.DbUtils;
  *
  * @author indrajit
  */
-public class RegUserPage extends javax.swing.JFrame {
+public class VisitorPage extends javax.swing.JFrame {
+
     /**
      * Creates new form RegUserPage
      */
 //    public RegUserPage() {
 //        initComponents();
 //    }
-    private static String username = "";
+    //private static String username = "visitor";
     private static String status = "";
-    public RegUserPage(String status, String RUname){
-        this.username = RUname;
+
+    public VisitorPage(String status) {//String status, String RUname){
+        //this.username = RUname;
         this.status = status;
         initComponents();
-        UserNametobePosted.setText("Welcome: "+username);
-        StatusLabel.setText("Status: "+status);
+        //UserNametobePosted.setText("Welcome: "+username);
+        StatusLabel.setText("Welcome: "+status);
     }
-    
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -44,29 +43,16 @@ public class RegUserPage extends javax.swing.JFrame {
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
-        BookUploadingButton = new javax.swing.JButton();
-        UserNametobePosted = new javax.swing.JLabel();
         LoadData = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         Table = new javax.swing.JTable();
         StatusLabel = new javax.swing.JLabel();
-        LogOutButton = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jPanel1.setBackground(new java.awt.Color(51, 153, 0));
         jPanel1.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 1, 1, 1, new java.awt.Color(153, 51, 0)));
         jPanel1.setPreferredSize(new java.awt.Dimension(1202, 635));
-
-        BookUploadingButton.setText("Upload a book");
-        BookUploadingButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                BookUploadingButtonActionPerformed(evt);
-            }
-        });
-
-        UserNametobePosted.setFont(new java.awt.Font("Lao MN", 1, 18)); // NOI18N
-        UserNametobePosted.setText("Wecome:");
 
         LoadData.setText("Load");
         LoadData.addActionListener(new java.awt.event.ActionListener() {
@@ -89,14 +75,7 @@ public class RegUserPage extends javax.swing.JFrame {
         jScrollPane1.setViewportView(Table);
 
         StatusLabel.setFont(new java.awt.Font("Lao MN", 1, 18)); // NOI18N
-        StatusLabel.setText("Status:");
-
-        LogOutButton.setText("LogOut");
-        LogOutButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                LogOutButtonActionPerformed(evt);
-            }
-        });
+        StatusLabel.setText("Welcome:");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -104,38 +83,22 @@ public class RegUserPage extends javax.swing.JFrame {
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(46, 46, 46)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(LoadData)
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 1130, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addContainerGap(24, Short.MAX_VALUE))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(BookUploadingButton)
-                            .addComponent(LogOutButton))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(UserNametobePosted, javax.swing.GroupLayout.PREFERRED_SIZE, 182, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(StatusLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 201, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(43, 43, 43))))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(LoadData)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 1130, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(24, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(StatusLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 201, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(77, 77, 77))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(20, 20, 20)
-                        .addComponent(UserNametobePosted)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(StatusLabel))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(19, 19, 19)
-                        .addComponent(LogOutButton)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(BookUploadingButton)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(LoadData)))
+                .addGap(23, 23, 23)
+                .addComponent(StatusLabel)
+                .addGap(53, 53, 53)
+                .addComponent(LoadData)
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(65, Short.MAX_VALUE))
@@ -160,36 +123,22 @@ public class RegUserPage extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void BookUploadingButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BookUploadingButtonActionPerformed
-        // TODO add your handling code here:
-        BookUploadform buf = new BookUploadform(status, username);
-        buf.setVisible(true);
-    }//GEN-LAST:event_BookUploadingButtonActionPerformed
-
     private void LoadDataActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_LoadDataActionPerformed
         // TODO add your handling code here:
-                // TODO add your handling code here:
+        // TODO add your handling code here:
         DbConnector dbc = new DbConnector();
         Connection conn = dbc.Connects();
-        
-        try{
+
+        try {
             String qry = "Select * from BookInfo";
             PreparedStatement stmt = conn.prepareStatement(qry);
             ResultSet rs = stmt.executeQuery();
             Table.setModel(DbUtils.resultSetToTableModel(rs));
-            
-        }catch(Exception e){
+
+        } catch (Exception e) {
             e.printStackTrace();
         }
     }//GEN-LAST:event_LoadDataActionPerformed
-
-    private void LogOutButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_LogOutButtonActionPerformed
-        // TODO add your handling code here:
-        //JOptionPane.showMessageDialog(null, "You are logged out.");
-        cancel();
-        UsersLoginform ulf = new UsersLoginform();
-        ulf.setVisible(true);
-    }//GEN-LAST:event_LogOutButtonActionPerformed
 
     /**
      * @param args the command line arguments
@@ -208,40 +157,40 @@ public class RegUserPage extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(RegUserPage.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(VisitorPage.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(RegUserPage.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(VisitorPage.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(RegUserPage.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(VisitorPage.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(RegUserPage.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(VisitorPage.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
         //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new RegUserPage(status, username).setVisible(true);
+                new VisitorPage(status).setVisible(true);
+                //new VisitorPage().setVisible(true);
+
             }
         });
 
     }
-        
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton BookUploadingButton;
     private javax.swing.JButton LoadData;
-    private javax.swing.JButton LogOutButton;
     private javax.swing.JLabel StatusLabel;
     private javax.swing.JTable Table;
-    private javax.swing.JLabel UserNametobePosted;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     // End of variables declaration//GEN-END:variables
-
-public void cancel() {
-        WindowEvent winClosing = new WindowEvent(this, WindowEvent.WINDOW_CLOSING);
-        Toolkit.getDefaultToolkit().getSystemEventQueue().postEvent(winClosing);
-    }
 }
