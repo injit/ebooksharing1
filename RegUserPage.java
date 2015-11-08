@@ -1,6 +1,9 @@
 package ebooksharing1;
 
-import javax.swing.JLabel;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import net.proteanit.sql.DbUtils;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -22,7 +25,7 @@ public class RegUserPage extends javax.swing.JFrame {
     public RegUserPage(String RUname){
         this.username = RUname;
         initComponents();
-        UserNametobePosted.setText("Welcome "+username);
+        UserNametobePosted.setText("Welcome: "+username);
     }
     
     /**
@@ -37,6 +40,9 @@ public class RegUserPage extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         BookUploadingButton = new javax.swing.JButton();
         UserNametobePosted = new javax.swing.JLabel();
+        LoadData = new javax.swing.JButton();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        Table = new javax.swing.JTable();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -51,34 +57,66 @@ public class RegUserPage extends javax.swing.JFrame {
 
         UserNametobePosted.setText("Wecome:");
 
+        LoadData.setText("Load");
+        LoadData.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                LoadDataActionPerformed(evt);
+            }
+        });
+
+        Table.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4", "Title 5", "Title 6", "Title 7", "Title 8", "Title 9", "Title 10", "Title 11", "Title 12", "Title 13"
+            }
+        ));
+        jScrollPane1.setViewportView(Table);
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(54, 54, 54)
-                .addComponent(BookUploadingButton)
-                .addContainerGap(1025, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(UserNametobePosted, javax.swing.GroupLayout.PREFERRED_SIZE, 182, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(62, 62, 62))
+                .addGap(46, 46, 46)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(BookUploadingButton)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(UserNametobePosted, javax.swing.GroupLayout.PREFERRED_SIZE, 182, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(62, 62, 62))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(LoadData)
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 1130, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addContainerGap(26, Short.MAX_VALUE))))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(20, 20, 20)
-                .addComponent(UserNametobePosted)
-                .addGap(83, 83, 83)
-                .addComponent(BookUploadingButton)
-                .addContainerGap(411, Short.MAX_VALUE))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(UserNametobePosted)
+                    .addComponent(BookUploadingButton))
+                .addGap(26, 26, 26)
+                .addComponent(LoadData)
+                .addGap(18, 18, 18)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(65, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -93,9 +131,26 @@ public class RegUserPage extends javax.swing.JFrame {
 
     private void BookUploadingButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BookUploadingButtonActionPerformed
         // TODO add your handling code here:
-        BookUploadform buf = new BookUploadform();
+        BookUploadform buf = new BookUploadform(username);
         buf.setVisible(true);
     }//GEN-LAST:event_BookUploadingButtonActionPerformed
+
+    private void LoadDataActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_LoadDataActionPerformed
+        // TODO add your handling code here:
+                // TODO add your handling code here:
+        DbConnector dbc = new DbConnector();
+        Connection conn = dbc.Connects();
+        
+        try{
+            String qry = "Select * from BookInfo";
+            PreparedStatement stmt = conn.prepareStatement(qry);
+            ResultSet rs = stmt.executeQuery();
+            Table.setModel(DbUtils.resultSetToTableModel(rs));
+            
+        }catch(Exception e){
+            e.printStackTrace();
+        }
+    }//GEN-LAST:event_LoadDataActionPerformed
 
     /**
      * @param args the command line arguments
@@ -137,7 +192,10 @@ public class RegUserPage extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton BookUploadingButton;
+    private javax.swing.JButton LoadData;
+    private javax.swing.JTable Table;
     private javax.swing.JLabel UserNametobePosted;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JScrollPane jScrollPane1;
     // End of variables declaration//GEN-END:variables
 }

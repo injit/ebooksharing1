@@ -33,7 +33,9 @@ public class BookUploadform extends javax.swing.JFrame {
     /**
      * Creates new form Registrationform
      */
-    public BookUploadform() {
+    private static String username = "";
+    public BookUploadform(String username) {
+        this.username = username;
         initComponents();
     }
 
@@ -329,7 +331,7 @@ public class BookUploadform extends javax.swing.JFrame {
     private void CancelButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CancelButtonActionPerformed
         // TODO add your handling code here:
         cancel();
-        ApplicationHome AH = new ApplicationHome();
+        RegUserPage AH = new RegUserPage(username);
         AH.setVisible(true);
     }//GEN-LAST:event_CancelButtonActionPerformed
 
@@ -391,7 +393,7 @@ public class BookUploadform extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new BookUploadform().setVisible(true);
+                new BookUploadform(username).setVisible(true);
             }
         });
     }
