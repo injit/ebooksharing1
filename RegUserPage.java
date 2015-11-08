@@ -1,24 +1,30 @@
 package ebooksharing1;
 
+import javax.swing.JLabel;
+
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 /**
  *
  * @author indrajit
  */
 public class RegUserPage extends javax.swing.JFrame {
-
     /**
      * Creates new form RegUserPage
      */
-    public RegUserPage() {
+//    public RegUserPage() {
+//        initComponents();
+//    }
+    private static String username = "";
+    public RegUserPage(String RUname){
+        this.username = RUname;
         initComponents();
+        UserNametobePosted.setText("Welcome "+username);
     }
-
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -30,7 +36,6 @@ public class RegUserPage extends javax.swing.JFrame {
 
         jPanel1 = new javax.swing.JPanel();
         BookUploadingButton = new javax.swing.JButton();
-        jLabel1 = new javax.swing.JLabel();
         UserNametobePosted = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -44,32 +49,26 @@ public class RegUserPage extends javax.swing.JFrame {
             }
         });
 
-        jLabel1.setText("Welcome");
-
-        UserNametobePosted.setText("UserName");
+        UserNametobePosted.setText("Wecome:");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(991, Short.MAX_VALUE)
-                .addComponent(jLabel1)
-                .addGap(18, 18, 18)
-                .addComponent(UserNametobePosted, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(27, 27, 27))
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(54, 54, 54)
                 .addComponent(BookUploadingButton)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(1025, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(UserNametobePosted, javax.swing.GroupLayout.PREFERRED_SIZE, 182, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(62, 62, 62))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(20, 20, 20)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel1)
-                    .addComponent(UserNametobePosted))
+                .addComponent(UserNametobePosted)
                 .addGap(83, 83, 83)
                 .addComponent(BookUploadingButton)
                 .addContainerGap(411, Short.MAX_VALUE))
@@ -129,15 +128,16 @@ public class RegUserPage extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new RegUserPage().setVisible(true);
+                new RegUserPage(username).setVisible(true);
             }
         });
+
     }
+        
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton BookUploadingButton;
     private javax.swing.JLabel UserNametobePosted;
-    private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
     // End of variables declaration//GEN-END:variables
 }

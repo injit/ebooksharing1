@@ -140,16 +140,19 @@ public class UsersLoginform extends javax.swing.JFrame {
         PassWordText = this.UserPassTextField.getText();
 
         try {
-            Connection conn;
-            Class.forName("org.apache.derby.jdbc.ClientDriver");
-            conn = DriverManager.getConnection("jdbc:derby://localhost:1527/UsersRegistration", "java", "java");
+            DbConnector dbc = new DbConnector();
+            
+            Connection conn = dbc.Connects();
+            //Class.forName("org.apache.derby.jdbc.ClientDriver");
+            //conn = DriverManager.getConnection("jdbc:derby://localhost:1527/UsersRegistration", "java", "java");
             Statement User_Stmt = conn.createStatement();
             String User_query = "Select * from UserInfo";
             ResultSet User_result = User_Stmt.executeQuery(User_query);
             boolean checkmatch = false;
-            String SuperUserType = "Super User";
-            String UserType = "User";
-            boolean UT = false;
+            boolean SuperUserType = false;
+            boolean UserType = false;
+            
+            String usernametogui = "";
             if (!UserNameText.isEmpty() && !PassWordText.isEmpty()) {
                 while (User_result.next()) {
                     String UN = User_result.getString("UserName");
@@ -157,18 +160,24 @@ public class UsersLoginform extends javax.swing.JFrame {
                     
                     if (UN.equalsIgnoreCase(UserNameText) && PW.equals(PassWordText)) {
                         checkmatch = true;
-                        UT = User_result.getBoolean("is_SU");
+                        usernametogui = User_result.getString("firstName");
+                        SuperUserType = User_result.getBoolean("is_SU");
                     }
+                    
+                    
                 }
 
                 if (checkmatch) {
-                    if(UT){
+                    if(SuperUserType){
                         JOptionPane.showMessageDialog(null, "You are logged in as  Super user.");
                         cancel();
-                    } else {
+                        RegUserPage rup = new RegUserPage(usernametogui);
+                        rup.setVisible(true);
+                    } 
+                    else{
                         JOptionPane.showMessageDialog(null, "You are logged in as registered user.");
                         cancel();
-                        RegUserPage rup = new RegUserPage();
+                        RegUserPage rup = new RegUserPage(usernametogui);
                         rup.setVisible(true);
                     }
                 }
