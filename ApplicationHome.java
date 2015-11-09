@@ -38,11 +38,8 @@ public class ApplicationHome extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-<<<<<<< HEAD
-        setPreferredSize(new java.awt.Dimension(970, 765));
-=======
         setPreferredSize(new java.awt.Dimension(970, 920));
->>>>>>> ebookIndrajit
+
 
         jPanel1.setBackground(new java.awt.Color(51, 153, 0));
 

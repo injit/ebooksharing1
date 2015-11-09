@@ -4,11 +4,7 @@
   <Properties>
     <Property name="defaultCloseOperation" type="int" value="2"/>
     <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
-<<<<<<< HEAD
-      <Dimension value="[970, 765]"/>
-=======
       <Dimension value="[970, 920]"/>
->>>>>>> ebookIndrajit
     </Property>
   </Properties>
   <SyntheticProperties>
