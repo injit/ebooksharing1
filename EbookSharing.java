@@ -10,13 +10,16 @@ package ebooksharing1;
  * @author indrajit
  */
 public class EbookSharing {
+    
+    
 
     /**
      * @param args the command line arguments
      */
-    //public static void main(String[] args) {
+    public static void main(String[] args) {
         // TODO code application logic here
-        
-    //}
+        WritetoDB wdb = new WritetoDB();
+        wdb.Write();
+    }
     
 }

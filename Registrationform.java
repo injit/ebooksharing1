@@ -59,6 +59,7 @@ public class Registrationform extends javax.swing.JFrame {
 
         jPanel1.setBackground(new java.awt.Color(51, 153, 0));
         jPanel1.setToolTipText("");
+        jPanel1.setPreferredSize(new java.awt.Dimension(970, 920));
 
         jLabel1.setText("Username");
 
@@ -101,20 +102,18 @@ public class Registrationform extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(jLabel3, javax.swing.GroupLayout.Alignment.TRAILING)
-                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                .addComponent(jLabel5)
-                                .addComponent(jLabel8)
-                                .addComponent(jLabel4))
-                            .addGap(5, 5, 5))
-                        .addComponent(jLabel2, javax.swing.GroupLayout.Alignment.TRAILING)
-                        .addComponent(CancelButton, javax.swing.GroupLayout.Alignment.TRAILING))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(75, 75, 75)
+                    .addComponent(jLabel3, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jLabel5)
+                            .addComponent(jLabel8)
+                            .addComponent(jLabel4))
+                        .addGap(5, 5, 5))
+                    .addComponent(CancelButton, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(jLabel2)
                         .addComponent(jLabel1)))
-                .addGap(86, 86, 86)
+                .addGap(89, 89, 89)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jRadioButton4)
                     .addComponent(PasswordField1, javax.swing.GroupLayout.PREFERRED_SIZE, 203, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -181,12 +180,12 @@ public class Registrationform extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 1196, Short.MAX_VALUE)
                 .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 569, Short.MAX_VALUE)
         );
 
         jPanel1.getAccessibleContext().setAccessibleName("");
@@ -255,7 +254,7 @@ public class Registrationform extends javax.swing.JFrame {
 
                                 if (input.equals("Access"))//This is a hard coded Access code for Super User registration
                                 {
-                                    JOptionPane.showMessageDialog(null, "Yay! Access granted, You have now Super User privilege.");
+                                    JOptionPane.showMessageDialog(null, "Congratulations! Access granted, You have now Super User privilege.");
                                     stmt.executeUpdate(query);
                                     /*while(rs.next()){
                                      System.out.println("Un"+ rs.getString("UserName")+ "UP "+ rs.getString("UserPassword")+ "FN "+ rs.getString("FirstName")+ "LN "+ rs.getString("LastName")+"email "+rs.getString("Email")+"UID "+ rs.getBigDecimal("UserID")+ "UType "+ rs.getString("UserType"));
@@ -275,9 +274,10 @@ public class Registrationform extends javax.swing.JFrame {
                                 JOptionPane.showMessageDialog(jp, "you clicked cancel !!! Try again", "Cancelled", JOptionPane.WARNING_MESSAGE);
                             }
                         } else {
-                            JOptionPane.showMessageDialog(null, "Congratulations, You are now Registered User.");
+                            
                             stmt.executeUpdate(query);
                             conn.close();
+                            //JOptionPane.showMessageDialog(null, "Congratulations, You are now Registered User.");
                             GreetingPage gp = new GreetingPage();
                             gp.setVisible(true);
                             cancel();
@@ -285,13 +285,6 @@ public class Registrationform extends javax.swing.JFrame {
 
                     } else {
                         JOptionPane.showMessageDialog(null, "All field needs to be filled out.");
-//                UserNameTextField.setText("");
-//                PasswordField1.setText("");
-//                FirstNameTextField.setText("");
-//                LastNameTextField.setText("");
-//                EmailTextField.setText("");
-//                IDTextField.setText("");
-//                jRadioButton3.isSelected();
                     }
                 } else {
                     JOptionPane.showMessageDialog(null, "This email address is already used.");
@@ -300,6 +293,7 @@ public class Registrationform extends javax.swing.JFrame {
             } else {
                 JOptionPane.showMessageDialog(null, "UserName already taken.");
             }
+            //conn.close();
         } catch (Exception e) {
             System.out.println(e.getMessage());
 

@@ -38,12 +38,16 @@ public class ApplicationHome extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+<<<<<<< HEAD
         setPreferredSize(new java.awt.Dimension(970, 765));
+=======
+        setPreferredSize(new java.awt.Dimension(970, 920));
+>>>>>>> ebookIndrajit
 
         jPanel1.setBackground(new java.awt.Color(51, 153, 0));
 
         jLabel1.setBackground(new java.awt.Color(0, 153, 102));
-        jLabel1.setFont(new java.awt.Font("Lucida Grande", 1, 18)); // NOI18N
+        jLabel1.setFont(new java.awt.Font("Lucida Grande", 1, 36)); // NOI18N
         jLabel1.setText("Welcome to EBook Sharing Application");
 
         UserRegistration.setText("User Registration");
@@ -75,13 +79,8 @@ public class ApplicationHome extends javax.swing.JFrame {
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addComponent(jLabel2)
-                        .addGap(134, 134, 134))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addComponent(jLabel1)
-                        .addGap(416, 416, 416))))
+                .addComponent(jLabel2)
+                .addGap(134, 134, 134))
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(403, 403, 403)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -89,20 +88,24 @@ public class ApplicationHome extends javax.swing.JFrame {
                     .addComponent(UserLogin)
                     .addComponent(UserRegistration))
                 .addGap(0, 0, Short.MAX_VALUE))
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(143, 143, 143)
+                .addComponent(jLabel1)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 241, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addGap(89, 89, 89)
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(36, 36, 36)
+                .addGap(77, 77, 77)
                 .addComponent(UserRegistration)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGap(18, 18, 18)
                 .addComponent(UserLogin)
                 .addGap(18, 18, 18)
                 .addComponent(VisitorButton)
-                .addContainerGap(419, Short.MAX_VALUE))
+                .addContainerGap(301, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -141,7 +144,7 @@ public class ApplicationHome extends javax.swing.JFrame {
 
     private void VisitorButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_VisitorButtonActionPerformed
         // TODO add your handling code here:
-        EbookApplicationasUsersView Eav = new EbookApplicationasUsersView();
+        VisitorPage Eav = new VisitorPage("Guest", "Visitor");
         Eav.setVisible(true);
         cancel();
     }//GEN-LAST:event_VisitorButtonActionPerformed

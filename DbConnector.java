@@ -13,16 +13,17 @@ import java.sql.DriverManager;
  * @author indrajit
  */
 public class DbConnector {
+
     Connection conn;
-    public Connection Connects(){
-        try{
-        Class.forName("org.apache.derby.jdbc.ClientDriver");
+
+    public Connection Connects() {
+        try {
+            Class.forName("org.apache.derby.jdbc.ClientDriver");
             conn = DriverManager.getConnection("jdbc:derby://localhost:1527/UsersRegistration", "java", "java");
-        }
-        catch(Exception e){
+        } catch (Exception e) {
             System.out.println("Error");
         }
         return conn;
     }
-    
+
 }
