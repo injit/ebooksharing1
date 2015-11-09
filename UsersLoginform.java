@@ -49,10 +49,11 @@ public class UsersLoginform extends javax.swing.JFrame {
         UserPassTextField = new javax.swing.JPasswordField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        setPreferredSize(new java.awt.Dimension(970, 920));
+        setPreferredSize(new java.awt.Dimension(970, 520));
 
         jPanel1.setBackground(new java.awt.Color(51, 153, 0));
         jPanel1.setFont(new java.awt.Font("Lucida Grande", 1, 13)); // NOI18N
+        jPanel1.setPreferredSize(new java.awt.Dimension(964, 920));
 
         UserNameLabel.setText("UserName");
 
@@ -108,7 +109,7 @@ public class UsersLoginform extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(LoginCancel)
                     .addComponent(SignInButton))
-                .addContainerGap(207, Short.MAX_VALUE))
+                .addContainerGap(567, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -121,7 +122,9 @@ public class UsersLoginform extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 914, Short.MAX_VALUE)
+                .addContainerGap())
         );
 
         pack();

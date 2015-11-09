@@ -42,15 +42,19 @@ public class RegUserPage extends javax.swing.JFrame {
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
+        bindingGroup = new org.jdesktop.beansbinding.BindingGroup();
 
+        UsersRegistrationPUEntityManager = java.beans.Beans.isDesignTime() ? null : javax.persistence.Persistence.createEntityManagerFactory("UsersRegistrationPU").createEntityManager();
+        bookinfoQuery = java.beans.Beans.isDesignTime() ? null : UsersRegistrationPUEntityManager.createQuery("SELECT b FROM Bookinfo b");
+        bookinfoList = java.beans.Beans.isDesignTime() ? java.util.Collections.emptyList() : bookinfoQuery.getResultList();
         jPanel1 = new javax.swing.JPanel();
         BookUploadingButton = new javax.swing.JButton();
         UserNametobePosted = new javax.swing.JLabel();
-        LoadData = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         Table = new javax.swing.JTable();
         StatusLabel = new javax.swing.JLabel();
         LogOutButton = new javax.swing.JButton();
+        BooksListLabel = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -68,24 +72,32 @@ public class RegUserPage extends javax.swing.JFrame {
         UserNametobePosted.setFont(new java.awt.Font("Lao MN", 1, 18)); // NOI18N
         UserNametobePosted.setText("Wecome:");
 
-        LoadData.setText("Load");
-        LoadData.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                LoadDataActionPerformed(evt);
-            }
-        });
+        Table.setRowHeight(200);
 
-        Table.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null, null}
-            },
-            new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4", "Title 5", "Title 6", "Title 7", "Title 8", "Title 9", "Title 10", "Title 11", "Title 12", "Title 13"
-            }
-        ));
+        org.jdesktop.swingbinding.JTableBinding jTableBinding = org.jdesktop.swingbinding.SwingBindings.createJTableBinding(org.jdesktop.beansbinding.AutoBinding.UpdateStrategy.READ_WRITE, bookinfoList, Table);
+        org.jdesktop.swingbinding.JTableBinding.ColumnBinding columnBinding = jTableBinding.addColumnBinding(org.jdesktop.beansbinding.ELProperty.create("${image}"));
+        columnBinding.setColumnName("Cover");
+        columnBinding.setColumnClass(javax.swing.ImageIcon.class);
+        columnBinding = jTableBinding.addColumnBinding(org.jdesktop.beansbinding.ELProperty.create("${bookname}"));
+        columnBinding.setColumnName("Bookname");
+        columnBinding.setColumnClass(String.class);
+        columnBinding = jTableBinding.addColumnBinding(org.jdesktop.beansbinding.ELProperty.create("${author}"));
+        columnBinding.setColumnName("Author");
+        columnBinding.setColumnClass(String.class);
+        columnBinding = jTableBinding.addColumnBinding(org.jdesktop.beansbinding.ELProperty.create("${summary}"));
+        columnBinding.setColumnName("Summary");
+        columnBinding.setColumnClass(String.class);
+        columnBinding = jTableBinding.addColumnBinding(org.jdesktop.beansbinding.ELProperty.create("${uploader}"));
+        columnBinding.setColumnName("Uploader");
+        columnBinding.setColumnClass(String.class);
+        columnBinding = jTableBinding.addColumnBinding(org.jdesktop.beansbinding.ELProperty.create("${readingPoint}"));
+        columnBinding.setColumnName("Reading Point");
+        columnBinding.setColumnClass(Short.class);
+        columnBinding = jTableBinding.addColumnBinding(org.jdesktop.beansbinding.ELProperty.create("${rating}"));
+        columnBinding.setColumnName("Rating");
+        columnBinding.setColumnClass(Short.class);
+        bindingGroup.addBinding(jTableBinding);
+        jTableBinding.bind();
         jScrollPane1.setViewportView(Table);
 
         StatusLabel.setFont(new java.awt.Font("Lao MN", 1, 18)); // NOI18N
@@ -98,18 +110,23 @@ public class RegUserPage extends javax.swing.JFrame {
             }
         });
 
+        BooksListLabel.setFont(new java.awt.Font("Lucida Grande", 1, 24)); // NOI18N
+        BooksListLabel.setText("List of books ");
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(46, 46, 46)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                .addComponent(BooksListLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 184, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(37, 37, 37)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(LoadData)
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 1130, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addContainerGap(24, Short.MAX_VALUE))
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 1130, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap(33, Short.MAX_VALUE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(BookUploadingButton)
@@ -133,12 +150,12 @@ public class RegUserPage extends javax.swing.JFrame {
                         .addGap(19, 19, 19)
                         .addComponent(LogOutButton)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(BookUploadingButton)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(LoadData)))
-                .addGap(18, 18, 18)
+                        .addComponent(BookUploadingButton)))
+                .addGap(37, 37, 37)
+                .addComponent(BooksListLabel)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(65, Short.MAX_VALUE))
+                .addContainerGap(45, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -157,6 +174,8 @@ public class RegUserPage extends javax.swing.JFrame {
                 .addGap(0, 10, Short.MAX_VALUE))
         );
 
+        bindingGroup.bind();
+
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
@@ -166,14 +185,12 @@ public class RegUserPage extends javax.swing.JFrame {
         buf.setVisible(true);
     }//GEN-LAST:event_BookUploadingButtonActionPerformed
 
-    private void LoadDataActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_LoadDataActionPerformed
-        // TODO add your handling code here:
-                // TODO add your handling code here:
-        DbConnector dbc = new DbConnector();
+    /*
+            DbConnector dbc = new DbConnector();
         Connection conn = dbc.Connects();
         
         try{
-            String qry = "Select * from BookInfo";
+            String qry = "Select cover, bookName, author, summary from BookInfo";
             PreparedStatement stmt = conn.prepareStatement(qry);
             ResultSet rs = stmt.executeQuery();
             Table.setModel(DbUtils.resultSetToTableModel(rs));
@@ -181,8 +198,9 @@ public class RegUserPage extends javax.swing.JFrame {
         }catch(Exception e){
             e.printStackTrace();
         }
-    }//GEN-LAST:event_LoadDataActionPerformed
-
+    */
+    
+    
     private void LogOutButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_LogOutButtonActionPerformed
         // TODO add your handling code here:
         //JOptionPane.showMessageDialog(null, "You are logged out.");
@@ -231,13 +249,17 @@ public class RegUserPage extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton BookUploadingButton;
-    private javax.swing.JButton LoadData;
+    private javax.swing.JLabel BooksListLabel;
     private javax.swing.JButton LogOutButton;
     private javax.swing.JLabel StatusLabel;
     private javax.swing.JTable Table;
     private javax.swing.JLabel UserNametobePosted;
+    private javax.persistence.EntityManager UsersRegistrationPUEntityManager;
+    private java.util.List<ebooksharing1.Bookinfo> bookinfoList;
+    private javax.persistence.Query bookinfoQuery;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
+    private org.jdesktop.beansbinding.BindingGroup bindingGroup;
     // End of variables declaration//GEN-END:variables
 
 public void cancel() {

@@ -140,7 +140,7 @@ public class ApplicationHome extends javax.swing.JFrame {
 
     private void VisitorButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_VisitorButtonActionPerformed
         // TODO add your handling code here:
-        VisitorPage Eav = new VisitorPage("Visitor");
+        VisitorPage Eav = new VisitorPage("Guest", "Visitor");
         Eav.setVisible(true);
         cancel();
     }//GEN-LAST:event_VisitorButtonActionPerformed

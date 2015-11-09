@@ -22,6 +22,7 @@ import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.persistence.Transient;
+import javax.swing.ImageIcon;
 
 /**
  *
@@ -57,7 +58,11 @@ public class Bookinfo implements Serializable {
     @Basic(optional = false)
     @Lob
     @Column(name = "COVER")
-    private Serializable cover;
+    private byte[] cover;
+    
+    public ImageIcon getImage(){
+        return new ImageIcon(new ImageIcon(cover).getImage().getScaledInstance(100, 150, java.awt.Image.SCALE_SMOOTH));
+    }
     @Column(name = "AUTHOR")
     private String author;
     @Column(name = "SUMMARY")
@@ -65,7 +70,11 @@ public class Bookinfo implements Serializable {
     @Basic(optional = false)
     @Lob
     @Column(name = "BOOKFILE")
-    private Serializable bookfile;
+    private byte[] bookfile;
+    
+//    public ImageIcon getImage(){
+//        return new ImageIcon(new ImageIcon(bookfile).getImage().getScaledInstance(200, 200, java.awt.Image.SCALE_SMOOTH));
+//    }
     @Basic(optional = false)
     @Column(name = "UPLOADER")
     private String uploader;
@@ -92,7 +101,7 @@ public class Bookinfo implements Serializable {
         this.bookid = bookid;
     }
 
-    public Bookinfo(Short bookid, String bookname, Serializable cover, Serializable bookfile, String uploader, short awardPoints, short readingPoint) {
+    public Bookinfo(Short bookid, String bookname, byte[] cover, byte[] bookfile, String uploader, short awardPoints, short readingPoint) {
         this.bookid = bookid;
         this.bookname = bookname;
         this.cover = cover;
@@ -126,7 +135,7 @@ public class Bookinfo implements Serializable {
         return cover;
     }
 
-    public void setCover(Serializable cover) {
+    public void setCover(byte[] cover) {
         Serializable oldCover = this.cover;
         this.cover = cover;
         changeSupport.firePropertyChange("cover", oldCover, cover);
@@ -156,7 +165,7 @@ public class Bookinfo implements Serializable {
         return bookfile;
     }
 
-    public void setBookfile(Serializable bookfile) {
+    public void setBookfile(byte[] bookfile) {
         Serializable oldBookfile = this.bookfile;
         this.bookfile = bookfile;
         changeSupport.firePropertyChange("bookfile", oldBookfile, bookfile);
