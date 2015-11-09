@@ -301,7 +301,7 @@ public class BookUploadform extends javax.swing.JFrame {
                     //cancel();
 
                 }
-                if (copyrightcheck) {
+                else if (copyrightcheck) {
                     final JPanel panel = new JPanel();
                     showMessageDialog(panel, "Copyright Issue", "Warning",
                             JOptionPane.WARNING_MESSAGE);

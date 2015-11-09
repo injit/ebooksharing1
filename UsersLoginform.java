@@ -179,7 +179,7 @@ public class UsersLoginform extends javax.swing.JFrame {
                     else if(!SuperUserType){
                         //JOptionPane.showMessageDialog(null, "You are logged in as registered user.");
                         cancel();
-                        RegUserPage rup = new RegUserPage("User", usernametogui);
+                        RegUserPage rup = new RegUserPage("Register User", usernametogui);
                         rup.setVisible(true);
                     }
                     else{

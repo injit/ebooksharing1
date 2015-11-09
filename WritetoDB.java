@@ -25,7 +25,7 @@ public class WritetoDB {
 
 
     String bookPath = "/Users/indrajit/NetBeansProjects/EbookLogin_1/books&images/book.txt";
-    String bookCover = "/Users/indrajit/NetBeansProjects/EbookLogin_1/books&images/sid.jpg";
+    String bookCover = "/Users/indrajit/NetBeansProjects/EbookLogin_1/books&images/Java.jpg";
 
     public void Write() {
 
@@ -41,20 +41,20 @@ public class WritetoDB {
             PreparedStatement statement = conn.prepareStatement(sql);
             //statement.setString(1, "3886");
             //statement.setInt(1, 1);
-            statement.setString(1, "Siddhartha");
+            statement.setString(1, "SoftwareEngineering");
             InputStream inputBookCover = new FileInputStream(new File(bookCover));
             statement.setBlob(2, inputBookCover);
-            statement.setString(3, "hemingway");
-            statement.setString(4, "This is a trial description for this book.");
+            statement.setString(3, "Engineer");
+            statement.setString(4, "This book will earn you lot of money.");
             InputStream inputBookfile = new FileInputStream(new File(bookPath));
             statement.setBlob(5, inputBookfile);
-            statement.setString(6, "test");
-            statement.setInt(7, 10);
+            statement.setString(6, "guruni");
+            statement.setInt(7, 20);
             statement.setInt(8, 30);
-            statement.setInt(9, 3);
+            statement.setInt(9, 66);
             statement.setDate(10, sqlDate);
-            statement.setInt(11, 5);
-            statement.setInt(12, 6);
+            statement.setInt(11, 8);
+            statement.setInt(12, 60);
 
             int row = statement.executeUpdate();
             if (row > 0) {

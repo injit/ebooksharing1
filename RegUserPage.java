@@ -30,7 +30,7 @@ public class RegUserPage extends javax.swing.JFrame {
         this.username = RUname;
         this.status = status;
         initComponents();
-        UserNametobePosted.setText("Welcome: "+username);
+        UserNametobePosted.setText("Welcome "+username);
         StatusLabel.setText("Status: "+status);
     }
     
@@ -154,8 +154,8 @@ public class RegUserPage extends javax.swing.JFrame {
                 .addGap(37, 37, 37)
                 .addComponent(BooksListLabel)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(45, Short.MAX_VALUE))
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 484, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(22, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -170,8 +170,8 @@ public class RegUserPage extends javax.swing.JFrame {
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 10, Short.MAX_VALUE))
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 676, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
 
         bindingGroup.bind();
@@ -181,6 +181,7 @@ public class RegUserPage extends javax.swing.JFrame {
 
     private void BookUploadingButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BookUploadingButtonActionPerformed
         // TODO add your handling code here:
+        cancel();
         BookUploadform buf = new BookUploadform(status, username);
         buf.setVisible(true);
     }//GEN-LAST:event_BookUploadingButtonActionPerformed
